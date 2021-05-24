@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newtons Cannon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Newton's Cannon</h1>
+    <div class="main">
+        <img src="NewtonDrawing.jpg" width="500" height="500">
+        <canvas id="theCanvas" width="500" height="500">
+
+        </canvas>
+    </div>
+    <div class="controls">
+        <input type="button" value="Fire!" onclick="fireProjectile()">
+        Initial speed = <span id="speedReadout">3000</span>m/s
+        <input type="range" id="speedSlider" min="0" max="10000" step="100" value="3000" oninput="showSpeed()"
+            onchange="showSpeed()">
+    </div>
+
+    <p>This simulation is based on Issac Newton's famous thought experiment and illustration of firing a projectile from
+        a high mountain top at various sppeds.
+    </p>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
