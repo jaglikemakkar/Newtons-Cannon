@@ -1,15 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body {
     font-size: 15px;
-    width: 600px;
     margin-left: auto;
     margin-right: auto;
-    background-color: #c0c0c0;
+    font-family: sans-serif;
+    background-color: lightblue;
 }
 
 body h1 {
     font-size: 24px;
     text-align: center;
-    color: #800000;
+    margin: 20px;
 }
 
 .main {
@@ -17,16 +22,70 @@ body h1 {
     width: 500px;
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    /* justify-content: space-around; */
+    align-items: center;
 }
 
 .main img {
     position: absolute;
 }
 
-.main canvas {
+.earth_container{
+    width: 500px;
+    height: 500px;
+    /* border-radius: 50%; */
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    flex-direction: column;
+    background: url("space.jpg");
+}
+.earth{
+    width: 355px;
+    height: 355px;
+    border-radius: 50%;
+    margin: auto;
+    background: url("earth2.jpg");
+    background-size: cover;
+}
+
+#trailCanvas{
+    position: absolute;
+}
+
+#theCanvas {
     position: relative;
+}
+
+.stats{
+    display: block;
+    margin-left: 30px;
+    padding: 50px;
+    background-color: aliceblue;
+}
+
+.stats p{
+    width: 200px;
+    margin-top: 5px;
 }
 
 .controls {
     text-align: center;
+}
+
+.buttons input{
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.description{
+    margin: auto;
+    margin-top: 20px;
+    width: 500px;
+}
+
+.description p{
+    font-family: 'Courier New', Courier, monospace;
 }

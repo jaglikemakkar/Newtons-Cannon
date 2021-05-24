@@ -12,21 +12,47 @@
 <body>
     <h1>Newton's Cannon</h1>
     <div class="main">
-        <img src="NewtonDrawing.jpg" width="500" height="500">
-        <canvas id="theCanvas" width="500" height="500">
+        <!-- <img src="NewtonDrawing.jpg" width="500" height="500"> -->
+        <div class="simulation">
+            <div class="earth_container">
+                <div class="mountain"></div>
+                <div class="earth"></div>
+            </div>
 
-        </canvas>
+            <canvas id="trailCanvas" width="500" height="500"></canvas>
+            <canvas id="theCanvas" width="500" height="500">
+
+            </canvas>
+        </div>
+        <div class="stats" id="stats">
+            <h3>Statistics</h3>
+            <p>G: -</p>
+            <p>M: -</p>
+            <p>R: -</p>
+            <p>X: -</p>
+            <p>Y: -</p>
+            <p>Vx: -</p>
+            <p>Vy: -</p>
+            <p>Ax: -</p>
+            <p>Ay: -</p>
+            
+        </div>
     </div>
     <div class="controls">
-        <input type="button" value="Fire!" onclick="fireProjectile()">
-        Initial speed = <span id="speedReadout">3000</span>m/s
-        <input type="range" id="speedSlider" min="0" max="10000" step="100" value="3000" oninput="showSpeed()"
+        Initial speed = <span id="speedReadout">5000</span>m/s
+        <input type="range" id="speedSlider" min="0" max="8000" step="100" value="5000" oninput="showSpeed()"
             onchange="showSpeed()">
+        <div class="buttons">
+            <input type="button" value="Fire!" onclick="fireProjectile()">
+            <input type="button" value="Clear" onclick="clearTrails()">
+            <input type="button" value="Stop" onclick="stopSimulation()">
+        </div>
     </div>
-
-    <p>This simulation is based on Issac Newton's famous thought experiment and illustration of firing a projectile from
-        a high mountain top at various sppeds.
-    </p>
+    <div class="description">
+        <p>This simulation is based on Issac Newton's famous thought experiment and illustration of firing a projectile from
+            a high mountain top at various sppeds.
+        </p>
+    </div>
 
     <script src="script.js"></script>
 </body>

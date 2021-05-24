@@ -10,8 +10,11 @@ x = 0;
 y = earthRadius + mountainHeight;
 
 var canvas = document.getElementById("theCanvas");
+var trailCanvas = document.getElementById("trailCanvas");
 var context = canvas.getContext("2d");
+var trailContext = trailCanvas.getContext("2d")
 context.beginPath();
+trailContext.beginPath();
 var metersPerPixel = earthRadius / (0.355 * canvas.width);
 pixelX = canvas.width / 2 + x / metersPerPixel;
 pixelY = canvas.height / 2 - y / metersPerPixel;
@@ -24,7 +27,7 @@ context.fill();
 
 var speedSlider = document.getElementById("speedSlider");
 var speedReadout = document.getElementById("speedReadout");
-
+var stats = document.getElementById("stats");
 
 function drawProjectile() {
     context.beginPath();
@@ -34,6 +37,12 @@ function drawProjectile() {
     gradient.addColorStop(1, "#ff0000");
     context.fillStyle = gradient;
     context.fill();
+    trailContext.fillStyle = "red";
+    trailContext.fillRect(pixelX-0.5, pixelY-0.5, 1, 1);
+}
+
+function clearTrails() {
+    trailContext.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
 }
 
 function moveProjectile() {
@@ -50,13 +59,35 @@ function moveProjectile() {
     var metersPerPixel = earthRadius / (0.355 * canvas.width);
     pixelX = canvas.width / 2 + x / metersPerPixel;
     pixelY = canvas.height / 2 - y / metersPerPixel;
-    console.log(pixelX, pixelY, x, y);
+    // console.log(pixelX, pixelY, x, y);
 
-    context.clearRect(0, 0, canvas.width, canvas.height)
+    context.clearRect(0, 0, canvas.width, canvas.height);
     drawProjectile();
-    if (r > earthRadius && pixelX <= canvas.width && pixelY <= canvas.height && x != NaN) {
-        timer = window.setTimeout(moveProjectile, 1000 / 30);
+    updateStats();
+    if (r > earthRadius && pixelX <= screen.width && pixelY <= screen.height && x != NaN) {
+        timer = window.setTimeout(moveProjectile, 10);
     }
+}
+
+function updateStats(){
+    var html = `
+    <h3>Statistics</h3>
+    <p>G: ${newtonG} Nm^2/kg^2</p>
+    <p>M: ${earthMass} kg</p>
+    <p>R: ${earthRadius/1000} km</p>
+    <p>X: ${Math.round(x/100000)*100} km</p>
+    <p>Y: ${Math.round(y/100000)*100} km</p>
+    <p>Vx: ${Math.round(vx/100)*100} mps</p>
+    <p>Vy: ${Math.round(vy/100)*100} mps</p>
+    <p>Ax: ${Math.round(ax*10)/10} m/s^2</p>
+    <p>Ay: ${Math.round(ay*10)/10} m/s^2</p>`
+
+    stats.innerHTML = html;
+}
+
+function stopSimulation(){
+    console.log("HHHH")
+    window.clearTimeout(timer);
 }
 
 function fireProjectile() {
@@ -65,7 +96,6 @@ function fireProjectile() {
     y = earthRadius + mountainHeight;
     vx = Number(speedSlider.value);
     vy = 0;
-    console.log('hhhh', x, y);
     moveProjectile();
 }
 
